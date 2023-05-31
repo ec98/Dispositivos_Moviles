@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Dispositivos Moviles</string>
     <string name="app_name_pantalla"> Fast and Delicious Food</string>
-    <string name="other_activity_text"> hola mundo</string>
+    --Segunda Activity
+    <string name="principal_activity_text"> Bienvenido</string>
+    <string name="principal_activity_botton1"> Presionar</string>
 
 </resources>

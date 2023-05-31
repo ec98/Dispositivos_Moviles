@@ -12,5 +12,8 @@
     <color name="botton_accept">#934BD1</color>
     <color name="botton_search">#D8613C</color>
     <color name="text_bg">#F3E1DC</color>
+    --segundaActivity
+    <color name="botton1_ap">#8E12A3</color>
+
 
 </resources>

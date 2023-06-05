@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Dispositivos Moviles</string>
-    <string name="app_name_pantalla"> Fast and Delicious Food</string>
+    <string name="app_name_pantalla"> Welcome</string>
+    <string name="app_name_pedidos"> Pedidos Online</string>
 
 </resources>

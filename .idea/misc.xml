@@ -1,0 +1,21 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/59393/AndroidStudioProjects/Dispositivos_Moviles-prac3/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/Dispositivos_Moviles-prac3/app/src/main/res/layout/activity_principal.xml" value="0.259375" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/font/roboto.xml" value="0.28958333333333336" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/font/satisfy.xml" value="0.28958333333333336" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/layout/activity_other.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/layout/activity_principal.xml" value="0.259375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="19" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

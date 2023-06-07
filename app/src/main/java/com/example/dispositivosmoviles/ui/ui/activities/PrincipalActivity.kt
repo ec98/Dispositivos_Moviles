@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
+import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -24,9 +25,11 @@ class PrincipalActivity : AppCompatActivity() {
         super.onStart()
 
         var name: String = ""
-        intent.extras?.let {
-            name = it.getString("var1") ?: ""
-        }
+
+        //No compila si descomenta intent.extras?.let{name = it.getString("var1") ?: ""}
+        //intent.extras?.let {
+        //    name = it.getString("var1") ?: ""
+        //}
 
         Log.d("UCE", "Hello $name")
         binding.textView.text = "Welcome $name!"
@@ -43,6 +46,43 @@ class PrincipalActivity : AppCompatActivity() {
                     MainActivity::class.java
                 )
             )
+        }
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.inicio -> {
+                    var suma = 0
+                    for (i in 1..10) {
+                        suma += i
+                    }
+                    Snackbar.make(
+                        binding.textView,
+                        "Suma (1..10) = ${suma}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    true
+                }
+
+                R.id.favoritos -> {
+                    var suma = 0
+                    for (i in listOf(6, 9, 1)) {
+                        suma += i
+                    }
+                    Snackbar.make(
+                        binding.textView,
+                        "listaOf(6,9,1) = ${suma}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    true
+                }
+
+                R.id.chat -> {
+                    Snackbar.make(binding.textView, "Bienvenido a Chat GPT", Snackbar.LENGTH_SHORT)
+                        .show()
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 

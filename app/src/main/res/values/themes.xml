@@ -27,7 +27,7 @@
     </style>
 
     <style name="ButtonsGeneral">
-        <item name="android:textStyle">italic</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">18sp</item>
         <item name="android:backgroundTint">@color/botton_accept</item>
         <item name="cornerRadius">8dp</item>

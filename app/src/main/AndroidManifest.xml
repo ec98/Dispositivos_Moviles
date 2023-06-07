@@ -13,12 +13,12 @@
         android:theme="@style/Theme.DispositivosMoviles"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ui.activities.PrincipalActivity"
+            android:name=".ui.ui.activities.MainActivity"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".ui.ui.activities.MainActivity"
+            android:name=".ui.ui.activities.PrincipalActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

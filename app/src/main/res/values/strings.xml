@@ -1,7 +1,26 @@
 <resources>
+    <!--Primer Activity ( Main Activity )-->
     <string name="app_name">Dispositivos Moviles</string>
-    <string name="app_name_pantalla"> Pedidos Online</string>
-    <string name="app_welcome_pantalla"> Bienvenido</string>
+    <string name="prm_act_pedidosOnline"> Pedidos Online</string>
+    <string name="primer_act_hola_es_bueno_verte_nuevamente">¡Hola! Es bueno verte nuevamente</string>
+    <string name="primer_act_correo">Correo</string>
+    <string name="primer_act_password">Password</string>
+    <string name="primer_act_bottonIngresar">Ingresar</string>
+    <string name="primer_act_text_o_con_ctese_usando_las_redes_sociales">O conéctese usando las redes sociales</string>
+    <string name="primer_act_bottonTwitter">Twitter</string>
+    <string name="primer_act_bottonFacebook">Facebook</string>
+    <string name="primer_act_olvido_su_contrase_a">¿Olvido su contraseña?</string>
+    <string name="primer_act_registrese">Regístrese</string>
+    <string name="principal_activity_text_regresar">Regresar</string>
+
+    <!--Segunda Activity ( Principal Activity )-->
+    <string name="sda_act_welcome"> Bienvenido</string>
+    <string name="sda_act_buscarArticulo">Buscar Artículo</string>
+
+    <!--Tercera Activity ( Menu .xml)-->
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_chat_gpt">Chat GPT</string>
 
 
 </resources>

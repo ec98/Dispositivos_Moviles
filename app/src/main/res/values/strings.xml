@@ -21,6 +21,8 @@
     <string name="menu_inicio">Inicio</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_chat_gpt">Chat GPT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="text_fragment">Primer fragmento</string>
 
 
 </resources>

@@ -48,11 +48,21 @@
         android:layout_height="83dp"
         android:layout_marginTop="113dp"
         android:backgroundTint="@color/azul_claro"
-        android:text="@string/principal_activity_text_regresar"
         android:src="@drawable/unnamed"
+        android:text="@string/principal_activity_text_regresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+
+    <FrameLayout
+        android:id="@+id/framContainer"
+        android:layout_width="366dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
 import com.example.dispositivosmoviles.ui.ui.fragment.FirstFragment
+import com.example.dispositivosmoviles.ui.ui.fragment.SecondFragment
+import com.example.dispositivosmoviles.ui.ui.fragment.ThirtyFragment
+import com.example.dispositivosmoviles.ui.ui.utilities.FragmentManager
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
@@ -51,36 +54,58 @@ class PrincipalActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.inicio -> {
-                    val frag = FirstFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.add(binding.framContainer.id,frag)
-                    transaction.addToBackStack(null)
-                    transaction.commit()
+                    FragmentManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.framContainer.id,
+                        FirstFragment()
+                    )
+//                    val frag = FirstFragment()
+//                    val transaction = supportFragmentManager.beginTransaction()
+//                    transaction.add(binding.framContainer.id,frag)
+//                    transaction.addToBackStack(null)
+//                    transaction.commit()
                     true
                 }
 
                 R.id.favoritos -> {
-                    var suma = 0
-                    for (i in listOf(6, 9, 1)) {
-                        suma += i
-                    }
-                    Snackbar.make(
-                        binding.textView,
-                        "listaOf(6,9,1) = ${suma}",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+//                    var suma = 0
+//                    for (i in listOf(6, 9, 1)) {
+//                        suma += i
+//                    }
+//                    Snackbar.make(
+//                        binding.textView,
+//                        "listaOf(6,9,1) = ${suma}",
+//                        Snackbar.LENGTH_SHORT
+//                    ).show()
+                    // Respond to navigation item 2 click
+
+                    FragmentManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.framContainer.id,
+                        SecondFragment()
+                    )
                     true
                 }
 
                 R.id.chat -> {
-                    Snackbar.make(binding.textView, "Bienvenido a Chat GPT", Snackbar.LENGTH_SHORT)
-                        .show()
+//                    Snackbar.make(binding.textView, "Bienvenido a Chat GPT", Snackbar.LENGTH_SHORT)
+//                        .show()
+                    // Respond to navigation item 3 click
+                    var frag = ThirtyFragment();
+                    val trans = supportFragmentManager.beginTransaction()
+                    trans.replace(binding.framContainer.id, frag)
+                    trans.addToBackStack(null)
+                    trans.commit()
                     true
                 }
 
                 else -> false
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
 }

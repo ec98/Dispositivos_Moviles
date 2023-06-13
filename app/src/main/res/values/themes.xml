@@ -41,4 +41,8 @@
         <item name="android:backgroundTint">@color/botton_search</item>
     </style>
 
+    <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/rojoPuro_color</item>
+    </style>
+
 </resources>

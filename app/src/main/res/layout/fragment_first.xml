@@ -10,16 +10,15 @@
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="335dp"
         android:layout_height="183dp"
-        android:elevation="10dp"
         android:layout_margin="35dp"
+        android:elevation="10dp"
         app:cardCornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageFragment1"
@@ -32,9 +31,9 @@
             android:id="@+id/textFragment1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/text_fragment"
-            android:gravity="bottom|center_horizontal"
             android:fontFamily="@font/roboto"
+            android:gravity="bottom|center_horizontal"
+            android:text="@string/text_fragment"
             android:textColor="@color/azul_marino"
             android:textSize="42sp"
             android:textStyle="bold"
@@ -43,5 +42,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.cardview.widget.CardView>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@color/amarillo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

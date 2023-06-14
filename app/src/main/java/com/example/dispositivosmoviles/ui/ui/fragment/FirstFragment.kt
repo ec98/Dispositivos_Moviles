@@ -27,10 +27,20 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val list=arrayListOf<String>("Carlos", "Xavier", "Pepe", "Andres", "Mariano")
-        val adapter= ArrayAdapter<String>(requireActivity(), R.layout.simple_layout , list)
+        val list=arrayListOf<String>(
+            "Carlos",
+            "Xavier",
+            "Pepe",
+            "Andres",
+            "Mariano"
+        )
+        //android.R.layout.simple_layout
+        val adapter= ArrayAdapter<String>(
+            requireActivity(),
+            R.layout.simple_layout ,
+            list)
         binding.spinner.adapter=adapter
-        binding.listView.adapter=adapter
+//        binding.listView.adapter=adapter
 
     }
 }

@@ -5,14 +5,14 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".ui.ui.fragment.FirstFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="335dp"
-        android:layout_height="183dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
         android:layout_margin="35dp"
         android:elevation="10dp"
         app:cardCornerRadius="12dp"
@@ -21,47 +21,46 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageFragment1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/chat_gpt_open"
-            android:visibility="visible" />
+            android:layout_height="210dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+
+            android:src="@drawable/marvel" />
 
         <TextView
             android:id="@+id/textFragment1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
             android:fontFamily="@font/roboto"
-            android:gravity="bottom|center_horizontal"
+            android:gravity="center"
             android:text="@string/text_fragment"
-            android:textColor="@color/azul_marino"
-            android:textSize="42sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/rojoPuro_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 
-    <Spinner
-        android:id="@+id/spinner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:background="@color/amarillo"
+        android:layout_height="350dp"
+        android:layout_margin="15dp"
+
+
+        android:layout_marginTop="148dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        tools:layout_editor_absoluteX="15dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMarvelPersonajes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp" />
+    </LinearLayout>
 
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,14 +14,15 @@
     <string name="principal_activity_text_regresar">Regresar</string>
 
     <!--Segunda Activity ( Principal Activity )-->
-    <string name="sda_act_welcome"> Bienvenido</string>
+    <string name="sda_act_welcome"> Segunda Activity</string>
     <string name="sda_act_buscarArticulo">Buscar Artículo</string>
 
     <!--Tercera Activity ( Menu .xml)-->
     <string name="menu_inicio">Inicio</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_chat_gpt">Chat GPT</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Personajes de marvel activity -->
     <string name="text_fragment">Primer fragmento</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

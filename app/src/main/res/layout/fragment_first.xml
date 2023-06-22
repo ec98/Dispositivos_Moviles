@@ -22,11 +22,17 @@
 
         <ImageView
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="210dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp"
 
             android:src="@drawable/marvel" />
+=======
+            android:layout_height="match_parent"
+            android:src="@drawable/marvel"
+            android:visibility="visible" />
+>>>>>>> 6d54c130734a6e600c7450d0e6141b50df293191
 
         <TextView
             android:id="@+id/textFragment1"
@@ -36,9 +42,18 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/text_fragment"
+<<<<<<< HEAD
             android:textColor="@color/rojoPuro_color"
             android:textSize="20sp"
             android:textStyle="bold" />
+=======
+            android:textColor="@color/azul_marino"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+>>>>>>> 6d54c130734a6e600c7450d0e6141b50df293191
 
     </androidx.cardview.widget.CardView>
 
@@ -62,5 +77,18 @@
             android:layout_margin="10dp" />
     </LinearLayout>
 
+<<<<<<< HEAD
+=======
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMarvelPersonajes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginVertical="25dp"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+>>>>>>> 6d54c130734a6e600c7450d0e6141b50df293191
 
 </androidx.constraintlayout.widget.ConstraintLayout>

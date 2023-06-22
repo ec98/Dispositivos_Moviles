@@ -30,6 +30,7 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+<<<<<<< HEAD
         val names = arrayListOf<String>(
             "Sofia",
             "Andrea",
@@ -45,6 +46,22 @@ class FirstFragment : Fragment() {
 //        binding.spinner.adapter = adapter
 //        binding.listView.adapter=adapter
         val rvAdapter = MarvelAdapter(listasItems().returnMarvelCharacters())
+=======
+        val list=arrayListOf<String>(
+            "Carlos",
+            "Xavier",
+            "Pepe",
+            "Andres",
+            "Mariano"
+        )
+        //android.R.layout.simple_layout
+        val adapter= ArrayAdapter<String>(
+            requireActivity(),
+            R.layout.simple_layout ,
+            list)
+        binding.spinner.adapter=adapter
+//        binding.listView.adapter=adapter
+>>>>>>> 6d54c130734a6e600c7450d0e6141b50df293191
 
         val rvMarvel = binding.rvMarvelPersonajes
         rvMarvel.adapter = rvAdapter

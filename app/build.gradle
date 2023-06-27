@@ -32,7 +32,7 @@ android {
         jvmTarget = '1.8'
     }
     //especifica y arrastra el tipo de dato correspondiente
-    buildFeatures{
+    buildFeatures {
         viewBinding = true //true para que la vista sea arrastrada.
     }
 
@@ -51,6 +51,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    //Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    //swiper Refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //Retrofit API
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // Manejo de JSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //Corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
 }

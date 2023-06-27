@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.MarvelPersonajesBinding
-import com.example.dispositivosmoviles.ui.logic.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.data.marvel.marvelCharacters
 import com.squareup.picasso.Picasso
 
 //Recycler necesita el listado de elementos
@@ -35,7 +35,7 @@ class MarvelAdapter(
 
             itemView.setOnClickListener {
                 fnClick(item)
-                //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_LONG)
+                //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_LONG).setBackgroundTint(Color.rgb(247, 147, 76)).show()
             }
         }
     }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityDetailsMarvelItemBinding
-import com.example.dispositivosmoviles.ui.logic.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.data.marvel.marvelCharacters
 import com.squareup.picasso.Picasso
 
 class DetailsMarvelItem : AppCompatActivity() {

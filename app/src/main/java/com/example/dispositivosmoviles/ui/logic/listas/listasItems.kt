@@ -1,7 +1,7 @@
 package com.example.dispositivosmoviles.ui.logic.listas
 
-import com.example.dispositivosmoviles.ui.logic.entities.LoginUser
-import com.example.dispositivosmoviles.ui.logic.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.data.entities.LoginUser
+import com.example.dispositivosmoviles.ui.data.marvel.marvelCharacters
 
 class listasItems {
 

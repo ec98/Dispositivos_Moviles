@@ -1,6 +1,6 @@
 package com.example.dispositivosmoviles.ui.logic.validator
 
-import com.example.dispositivosmoviles.ui.logic.entities.LoginUser
+import com.example.dispositivosmoviles.ui.data.entities.LoginUser
 
 class LoginValidator {
     fun checkLogin(name: String, password: String): Boolean {

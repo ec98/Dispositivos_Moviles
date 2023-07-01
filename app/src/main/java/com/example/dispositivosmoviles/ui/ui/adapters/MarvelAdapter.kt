@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.MarvelPersonajesBinding
-import com.example.dispositivosmoviles.ui.data.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
 import com.squareup.picasso.Picasso
 
 //Recycler necesita el listado de elementos

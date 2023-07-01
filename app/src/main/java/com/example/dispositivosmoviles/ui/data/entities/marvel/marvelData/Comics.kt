@@ -1,6 +1,6 @@
-package com.example.dispositivosmoviles.ui.data.entities.marvel
+package com.example.dispositivosmoviles.ui.data.entities.marvel.marvelData
 
-data class Events(
+data class Comics(
     val available: Int,
     val collectionURI: String,
     val items: List<Item>,

@@ -1,6 +1,6 @@
 package com.example.dispositivosmoviles.ui.data.endPoints
 
-import com.example.dispositivosmoviles.ui.data.entities.marvel.MarvelApiCharacters
+import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelData.MarvelApiCharacters
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

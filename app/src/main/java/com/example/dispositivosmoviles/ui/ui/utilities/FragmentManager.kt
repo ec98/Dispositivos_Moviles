@@ -6,8 +6,12 @@ import androidx.fragment.app.FragmentManager
 
 class FragmentManager {
 
-    fun replaceFragment(manager: FragmentManager, container: Int, fragment: Fragment){
-        with(manager.beginTransaction()){
+    fun replaceFragment(
+        manager: FragmentManager,
+        container: Int,
+        fragment: Fragment
+    ) {
+        with(manager.beginTransaction()) {
             replace(container, fragment)
             addToBackStack(null)
             commit()
@@ -15,8 +19,8 @@ class FragmentManager {
 
     }
 
-    fun addFragment(manager: FragmentManager, container: Int, fragment:Fragment){
-        with(manager.beginTransaction()){
+    fun addFragment(manager: FragmentManager, container: Int, fragment: Fragment) {
+        with(manager.beginTransaction()) {
             add(container, fragment)
             addToBackStack(null)
             commit()

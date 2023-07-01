@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
-import com.example.dispositivosmoviles.ui.data.marvel.marvelCharacters
-import com.example.dispositivosmoviles.ui.logic.jikan_logic.JikanAnimeLogic
+import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.data.logic.jikan_logic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.ui.adapters.MarvelAdapter
 import kotlinx.coroutines.Dispatchers

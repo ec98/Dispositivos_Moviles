@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.data.entities.marvel
+package com.example.dispositivosmoviles.ui.data.entities.marvel.marvelData
 
 data class Result(
     val comics: Comics,

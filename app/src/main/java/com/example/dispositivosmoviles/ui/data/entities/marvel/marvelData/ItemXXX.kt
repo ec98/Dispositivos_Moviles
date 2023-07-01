@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.data.entities.marvel
+package com.example.dispositivosmoviles.ui.data.entities.marvel.marvelData
 
 data class ItemXXX(
     val name: String,

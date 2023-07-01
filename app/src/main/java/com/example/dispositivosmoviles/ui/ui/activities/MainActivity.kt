@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
-import com.example.dispositivosmoviles.ui.logic.validator.LoginValidator
+import com.example.dispositivosmoviles.ui.data.validator.LoginValidator
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {

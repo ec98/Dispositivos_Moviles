@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.logic.validator
+package com.example.dispositivosmoviles.ui.data.validator
 
 import com.example.dispositivosmoviles.ui.data.entities.LoginUser
 

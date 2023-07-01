@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
 import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
@@ -22,7 +23,10 @@ import kotlinx.coroutines.withContext
 class FirstFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding
+    private lateinit var lmanager: LinearLayoutManager
+    private lateinit var rvAdapter: MarvelAdapter
 
+    //    private var rvAdapter : MarvelAdapter = MarvelAdapter{sendMarvelItem(it)}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +35,12 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(
             layoutInflater, container, false
+        )
+
+        lmanager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.VERTICAL,
+            false
         )
         return binding.root
     }
@@ -52,12 +62,41 @@ class FirstFragment : Fragment() {
         )
         binding.spinner.adapter = adapter
         //carga los datos
-        chargeDataRV()
+        chargeDataRV("cap")
 
         binding.rvSwipe.setOnRefreshListener {
-            chargeDataRV()
+            chargeDataRV("cap")
             binding.rvSwipe.isRefreshing = false
         }
+        binding.rvMarvelPersonajes.addOnScrollListener(
+            object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    if (dy > 0) {
+                        val v = lmanager.childCount
+                        val p = lmanager.findFirstVisibleItemPosition()
+                        val t = lmanager.itemCount
+
+                        // v
+                        // p es la posicion en la que esta
+                        // t es el total de items
+                        if ((v + p) >= t) {
+                            lifecycleScope.launch((Dispatchers.IO)) {
+                                val newItems = JikanAnimeLogic().getAllanimes()
+//                                val x = withContext(Dispatchers.IO) {
+//                                    MarvelLogic().getMarvelChars(name = "cap", page * 3)
+//                                }
+//                                rvAdapter.updateListItems(x)
+                                withContext(Dispatchers.Main) {
+                                    rvAdapter.updateListItems(newItems)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        )
     }
 
     //informacion del item seleccionado
@@ -77,21 +116,34 @@ class FirstFragment : Fragment() {
     // Serializacion -> Utiliza objetos JSON
     // Parcelables   -> Son mas rapidos pero su implementacion es compleja, afortunadamente existen plugins que nos ayudan
 
-    private fun chargeDataRV() {
+//    fun corrotine() {
+//        lifecycleScope.launch(Dispatchers.Main) {
+//            var name = "Edwin"
+//            name = withContext(Dispatchers.IO) {
+//                name = "Kevin"
+//                return@withContext name
+//            }
+//            binding.cardView.radius
+//        }
+//    }
+
+    private fun chargeDataRV(search: String) {
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val rvAdapter = MarvelAdapter(
+            rvAdapter = MarvelAdapter(
                 JikanAnimeLogic().getAllanimes()
+//                MarvelLogic().getMarvelChars(name = search, 20)
             ) { sendMarvelItem(it) }//entre llaves se manda los lambdas
 
             withContext(Dispatchers.Main) {
                 with(binding.rvMarvelPersonajes) {
                     this.adapter = rvAdapter
-                    this.layoutManager = LinearLayoutManager(
-                        requireActivity(),
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
+                    this.layoutManager = lmanager
+//                    this.layoutManager = LinearLayoutManager(
+//                        requireActivity(),
+//                        LinearLayoutManager.VERTICAL,
+//                        false
+//                    )
                 }
             }
 

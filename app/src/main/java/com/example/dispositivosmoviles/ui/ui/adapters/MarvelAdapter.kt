@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 
 //Recycler necesita el listado de elementos
 class MarvelAdapter(
-    private val items: List<marvelCharacters>,
+    private var items: List<marvelCharacters>,
     private var fnClick: (marvelCharacters) -> Unit //Este unit no te devuelve nada.
 ) : //adaptor recibe dos parametros.
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
@@ -62,5 +62,10 @@ class MarvelAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun updateListItems(newItems: List<marvelCharacters>) {
+        this.items = this.items.plus(newItems)
+        notifyDataSetChanged()
+    }
 
 }

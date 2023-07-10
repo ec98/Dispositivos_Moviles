@@ -7,38 +7,45 @@
     android:background="@color/black"
     tools:context=".ui.ui.fragment.SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/black"
-        app:cardCornerRadius="4dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerFfirst">
 
-
-        <TextView
-            android:layout_width="163dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="90dp"
-            android:paddingHorizontal="10dp"
-            android:text="Favorite"
-            android:textAlignment="center"
+        <EditText
+            android:id="@+id/textfilder"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="30dp"
-            android:textStyle="bold|italic" />
+            android:textSize="25sp"
+            tools:drawableLeft="@drawable/baseline_search_24"
+            tools:text="Search anime or marvel"
+            tools:textColor="@color/low_gray"
+            tools:textStyle="italic" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/estrella" />
-    </androidx.cardview.widget.CardView>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rvSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMarvelChars"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

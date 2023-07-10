@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.ui.adapters
+package com.example.dispositivosmoviles.ui.ui.fragment.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.MarvelPersonajesBinding
-import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import com.squareup.picasso.Picasso
 
 //Recycler necesita el listado de elementos
+//el adapter y el fragment manejan de la mano
 class MarvelAdapter(
     private var items: List<marvelCharacters>,
     private var fnClick: (marvelCharacters) -> Unit //Este unit no te devuelve nada.
@@ -44,7 +45,7 @@ class MarvelAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarvelAdapter.MarvelViewHolder {
+    ): MarvelViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return MarvelViewHolder(
             inflater.inflate(
@@ -57,7 +58,7 @@ class MarvelAdapter(
         // return MarvelViewHolder(a)
     }
 
-    override fun onBindViewHolder(holder: MarvelAdapter.MarvelViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelViewHolder, position: Int) {
         holder.render(items[position], fnClick)
     }
 
@@ -65,6 +66,11 @@ class MarvelAdapter(
 
     fun updateListItems(newItems: List<marvelCharacters>) {
         this.items = this.items.plus(newItems)
+        notifyDataSetChanged()
+    }
+
+    fun replaceListItems(newItems: List<marvelCharacters>) {
+        this.items = newItems
         notifyDataSetChanged()
     }
 

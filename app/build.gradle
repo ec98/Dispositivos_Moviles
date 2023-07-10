@@ -1,7 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id("kotlin-parcelize")
+    id "kotlin-parcelize"
+    id "kotlin-kapt"
 }
 
 android {
@@ -51,19 +52,29 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    //Picasso
-    implementation 'com.squareup.picasso:picasso:2.8'
+    //Picasso for images
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
-    //swiper Refresh
+    //swiper Refresh for refresh information
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    //Retrofit API
+    //Retrofit API connect API
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
-    // Manejo de JSON
+    // Manejo de JSON convert datos a tipo json
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //Corrutinas
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2')
+    implementation('androidx.lifecycle:lifecycle-runtime-ktx:2.6.1')
+
+    //Connection data base
+    //def val room_version = "2.5.0"
+
+    //ROOM
+    implementation('androidx.room:room-runtime:2.5.2')
+    annotationProcessor('androidx.room:room-compiler:2.5.2')
+    // To use Kotlin annotation processing tool (kapt)
+    kapt('androidx.room:room-compiler:2.5.2')
+
 }

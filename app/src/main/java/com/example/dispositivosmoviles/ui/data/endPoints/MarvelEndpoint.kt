@@ -11,10 +11,21 @@ interface MarvelEndpoint {
     fun getCharactersStartWith(
         @Query("nameStartsWith") name: String,
         @Query("limit") limit: Int,
-        //valores por omision
-        @Query("ts") ts: String = "uce",
+        //valores por omision (referenciado a la pagina de enlace
+        //los siguientes parametros)
+        @Query("ts") ts: String = "uce1",
         @Query("apikey") apikey: String = "48ed26ff242038147ce24450236a7ec2",
-        @Query("hash") hash: String = "f00af94ad24dd1d56b2ea26ae903030e"
+        @Query("hash") hash: String = "e39fb11ad271b98d8cac028063ce639b"
+
+    ): Response<MarvelApiCharacters>
+
+    @GET("characters")
+    suspend fun getAllMarvelChar(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+        @Query("ts") ts: String = "uce1",
+        @Query("apikey") apikey: String = "48ed26ff242038147ce24450236a7ec2",
+        @Query("hash") hash: String = "e39fb11ad271b98d8cac028063ce639b"
 
     ): Response<MarvelApiCharacters>
 }

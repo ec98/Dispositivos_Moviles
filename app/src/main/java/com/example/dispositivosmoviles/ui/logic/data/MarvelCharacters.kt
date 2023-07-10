@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.data.entities.marvel
+package com.example.dispositivosmoviles.ui.logic.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -9,8 +9,7 @@ data class marvelCharacters(
     val name: String,
     val comic: String,
     val image: String
-) : Parcelable {
+) : Parcelable
 //    override fun toString(): String {
 //        return "$name realizado de $comic"
 //    }
-}

@@ -1,7 +1,7 @@
 package com.example.dispositivosmoviles.ui.data.validator
 
 import com.example.dispositivosmoviles.ui.data.entities.LoginUser
-import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 
 class listasItems {
 

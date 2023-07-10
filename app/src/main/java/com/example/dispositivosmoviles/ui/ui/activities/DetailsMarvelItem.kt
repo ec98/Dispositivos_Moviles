@@ -2,9 +2,8 @@ package com.example.dispositivosmoviles.ui.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityDetailsMarvelItemBinding
-import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelCharacters
+import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import com.squareup.picasso.Picasso
 
 class DetailsMarvelItem : AppCompatActivity() {
@@ -14,7 +13,7 @@ class DetailsMarvelItem : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsMarvelItemBinding.inflate(layoutInflater)
-        setContentView(binding.root) //accede a la razi del diseño enlazado del activity
+        setContentView(binding.root) //accede a la raiz del diseño enlazado del activity
     }
 
     override fun onStart() {

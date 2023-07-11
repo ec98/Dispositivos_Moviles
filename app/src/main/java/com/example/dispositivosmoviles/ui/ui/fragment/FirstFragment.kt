@@ -35,16 +35,22 @@ class FirstFragment : Fragment() {
     private var marvelCharsItems: MutableList<marvelCharacters> = mutableListOf<marvelCharacters>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
         binding = FragmentFirstBinding.inflate(
-            layoutInflater, container, false
+            layoutInflater,
+            container,
+            false
         )
 
         lmanager = LinearLayoutManager(
-            requireActivity(), LinearLayoutManager.VERTICAL, false
+            requireActivity(),
+            LinearLayoutManager.VERTICAL,
+            false
         )
         gManager = GridLayoutManager(requireActivity(), 2)
         return binding.root
@@ -60,11 +66,12 @@ class FirstFragment : Fragment() {
             requireActivity(), R.layout.simple_layout, names
         )
         binding.spinner.adapter = adapter
+
         //carga los datos
-        chargeDataRV("cap")
+        chargeDataRVDB(5)
 
         binding.rvSwipe.setOnRefreshListener {
-            chargeDataRV("cap")
+            chargeDataRVDB(5)
             binding.rvSwipe.isRefreshing = false
         }
         binding.rvMarvelPersonajes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -96,7 +103,7 @@ class FirstFragment : Fragment() {
         })
 
         //nos sirve para filtrar informacion
-        binding.textFragment1.addTextChangedListener { textfilter ->
+        binding.textfilder.addTextChangedListener { textfilter ->
             var newItems = marvelCharsItems.filter { items ->
                 items.name.lowercase().contains(textfilter.toString().lowercase())
             }
@@ -132,7 +139,7 @@ class FirstFragment : Fragment() {
 //        }
 //    }
 
-    private fun chargeDataRV(search: String) {
+    private fun chargeDataRVDBAPI(pos: Int) {
 
         lifecycleScope.launch(Dispatchers.Main) {
             //cambiamos a IO porque es una coneccino de dato
@@ -168,15 +175,29 @@ class FirstFragment : Fragment() {
         }
     }
 
-//        val rvAdapter = MarvelAdapter(
-//            listasItems().returnMarvelCharacters(),
-//        ) { sendMarvelItem(it) } //adapter sabe que es un list.
-//        //so selected c/marvel
-//        val rvMarvel = binding.rvMarvelPersonajes
-//        with(rvMarvel) {
-//            this.adapter = rvAdapter
-//            this.layoutManager = LinearLayoutManager(
-//                requireActivity(), LinearLayoutManager.VERTICAL, false
-//            )
-//        }
+    fun chargeDataRVDB(pos: Int) {
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            //cambiamos a IO porque es una coneccino de dato
+            marvelCharsItems = withContext(Dispatchers.IO) {
+                var items = MarvelLogic().getAllMarvelCharsDB().toMutableList()
+
+                if (items.isEmpty()) {
+                    items = (MarvelLogic().getAllMarvelCharacters(0, 99))
+                    MarvelLogic().insertMarvelCharstoDB(items)
+                }
+                return@withContext items
+            }
+
+            rvAdapter = MarvelAdapter(marvelCharsItems)
+            { sendMarvelItem(it) }
+
+            binding.rvMarvelPersonajes.apply {
+                this.adapter = rvAdapter
+                //lo reemplazo por otro manager
+                this.layoutManager = lmanager
+                gManager.scrollToPositionWithOffset(pos, 10)
+            }
+        }
+    }
 }

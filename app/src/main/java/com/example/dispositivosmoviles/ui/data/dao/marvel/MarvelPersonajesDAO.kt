@@ -13,11 +13,11 @@ interface MarvelPersonajesDAO {
 //    antes de colocar las funciones,necesitas la base de datos de DATO
 //    en este caso MarvelPersonajesDB
 
-//    ahora si
+    //    ahora si
     @Query("select * from MarvelPersonajesDB")
     fun getAllCharacters(): List<MarvelPersonajesDB>
 
-    @Query("select * from MARVELPERSONAJESDB where id =:pk")
+    @Query("select * from MarvelPersonajesDB where id =:pk")
     fun getOneCharacter(pk: Int): MarvelPersonajesDB
 
     @Insert

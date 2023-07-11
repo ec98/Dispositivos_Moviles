@@ -37,11 +37,18 @@ class SecondFragment : Fragment() {
             layoutInflater, container, false
         )
         lmanager = LinearLayoutManager(
-            requireActivity(), LinearLayoutManager.VERTICAL, false
+            requireActivity(),
+            LinearLayoutManager.VERTICAL,
+            false
         )
         return binding.root
     }
 
+    private fun sendMarvelItem(item: marvelCharacters) {
+        val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
+        i.putExtra("name", item)
+        startActivity(i)
+    }
     override fun onStart() {
         super.onStart()
         //carga los datos
@@ -77,11 +84,6 @@ class SecondFragment : Fragment() {
         }
     }
 
-    private fun sendMarvelItem(item: marvelCharacters) {
-        val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
-        i.putExtra("name", item)
-        startActivity(i)
-    }
     private fun chargeDataRV(search: String) {
 
         lifecycleScope.launch(Dispatchers.Main) {

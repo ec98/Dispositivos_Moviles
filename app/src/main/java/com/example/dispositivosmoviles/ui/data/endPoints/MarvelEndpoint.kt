@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.ui.data.endPoints
 
 import com.example.dispositivosmoviles.ui.data.entities.marvel.marvelData.MarvelApiCharacters
+import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -20,7 +21,7 @@ interface MarvelEndpoint {
     ): Response<MarvelApiCharacters>
 
     @GET("characters")
-    suspend fun getAllMarvelChar(
+    suspend fun getAllMarvelCharacters(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
         @Query("ts") ts: String = "uce1",

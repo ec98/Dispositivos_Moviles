@@ -28,7 +28,7 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        var name: String = ""
+        var name: String = "ecStarkOf"
 
         //No compila si descomenta intent.extras?.let{name = it.getString("var1") ?: ""}
         //intent.extras?.let {
@@ -107,5 +107,8 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
     }
+
+
+
 
 }

@@ -2,10 +2,12 @@ package com.example.dispositivosmoviles.ui.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,11 +19,15 @@ import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import com.example.dispositivosmoviles.ui.logic.jikan_logic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.logic.marvel_logic.MarvelLogic
 import com.example.dispositivosmoviles.ui.ui.activities.DetailsMarvelItem
+import com.example.dispositivosmoviles.ui.ui.activities.dataStore
+import com.example.dispositivosmoviles.ui.ui.data.UserDataStore
 import com.example.dispositivosmoviles.ui.ui.fragment.adapters.MarvelAdapter
 import com.example.dispositivosmoviles.ui.ui.utilities.DispositivosMoviles
 import com.example.dispositivosmoviles.ui.ui.utilities.Metodos
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -61,6 +67,16 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        //llamamos a la funcion
+        lifecycleScope.launch(Dispatchers.Main) {
+            getDataStore().collect { user ->
+                Log.d("UCE", user.usuario)
+                Log.d("UCE", user.email)
+                Log.d("UCE", user.session)
+            }
+        }
+
         /*
         val names = arrayListOf<String>(
             "Sofia", "Andrea", "Carla", "Ninett", "Monica"
@@ -208,5 +224,18 @@ class FirstFragment : Fragment() {
         } else {
             Snackbar.make(binding.cardView, "No hay conexion", Snackbar.LENGTH_LONG).show()
         }
+    }
+
+    //necesitamos llamar al activity
+    //NO hacer directamente al data store, por el fragment
+    private fun getDataStore(): Flow<UserDataStore> {
+        val user = requireActivity().dataStore.data.map {
+            UserDataStore(
+                usuario = it[(stringPreferencesKey("user"))].orEmpty(),
+                email = it[(stringPreferencesKey("email"))].orEmpty(),
+                session = it[(stringPreferencesKey("session"))].orEmpty()
+            )
+        }
+        return user
     }
 }

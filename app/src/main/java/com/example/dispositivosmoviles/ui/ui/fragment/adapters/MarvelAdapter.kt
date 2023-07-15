@@ -13,8 +13,11 @@ import com.squareup.picasso.Picasso
 //el adapter y el fragment manejan de la mano
 class MarvelAdapter(
     private var items: List<marvelCharacters>,
-    private var fnClick: (marvelCharacters) -> Unit //Este unit no te devuelve nada.
-) : //adaptor recibe dos parametros.
+    private var fnClick: (marvelCharacters) -> Unit, //Este unit no te devuelve nada.
+    private var fnSave: (marvelCharacters) -> Boolean //devuelve true si guarda o false
+) :
+
+
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
 
 
@@ -25,7 +28,8 @@ class MarvelAdapter(
 
         fun render(
             item: marvelCharacters,
-            fnClick: (marvelCharacters) -> Unit
+            fnClick: (marvelCharacters) -> Unit,
+            fnSave: (marvelCharacters) -> Boolean
         ) { //tomar cada uno de los items de la lista
             //println("Recibiendo a ${item.nombre}")
             binding.txtName.text = item.name
@@ -37,6 +41,9 @@ class MarvelAdapter(
             itemView.setOnClickListener {
                 fnClick(item)
                 //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_LONG).setBackgroundTint(Color.rgb(247, 147, 76)).show()
+            }
+            binding.buttonSave.setOnClickListener{
+                fnSave(item)
             }
         }
     }
@@ -54,12 +61,10 @@ class MarvelAdapter(
                 false
             )
         )
-        // val a = inflater.inflate(R.layout.marvel_personajes, parent, false)
-        // return MarvelViewHolder(a)
     }
 
     override fun onBindViewHolder(holder: MarvelViewHolder, position: Int) {
-        holder.render(items[position], fnClick)
+        holder.render(items[position], fnClick, fnSave)
     }
 
     override fun getItemCount(): Int = items.size

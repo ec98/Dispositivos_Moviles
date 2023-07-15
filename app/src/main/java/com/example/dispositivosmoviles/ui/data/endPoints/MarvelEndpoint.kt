@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface MarvelEndpoint {
 
     @GET("characters")
-    fun getCharactersStartWith(
+    suspend fun getCharactersStartWith(
         @Query("nameStartsWith") name: String,
         @Query("limit") limit: Int,
         //valores por omision (referenciado a la pagina de enlace

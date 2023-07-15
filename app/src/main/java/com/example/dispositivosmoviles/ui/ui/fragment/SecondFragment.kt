@@ -1,21 +1,19 @@
 package com.example.dispositivosmoviles.ui.ui.fragment
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.databinding.FragmentSecondBinding
 import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
-import com.example.dispositivosmoviles.ui.logic.jikan_logic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.logic.marvel_logic.MarvelLogic
-import com.example.dispositivosmoviles.ui.ui.activities.DetailsMarvelItem
-import com.example.dispositivosmoviles.ui.ui.fragment.adapters.MarvelAdapter
+import com.example.dispositivosmoviles.ui.ui.fragment.adapters.MarvelAdapterv2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,7 +22,8 @@ class SecondFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
     private lateinit var lmanager: LinearLayoutManager
-    private lateinit var rvAdapter: MarvelAdapter
+
+    private lateinit var rvAdapter: MarvelAdapterv2
 
     private var marvelCharsItems: MutableList<marvelCharacters> = mutableListOf<marvelCharacters>()
 
@@ -44,43 +43,22 @@ class SecondFragment : Fragment() {
         return binding.root
     }
 
-    private fun sendMarvelItem(item: marvelCharacters) {
-        val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
-        i.putExtra("name", item)
-        startActivity(i)
-    }
     override fun onStart() {
         super.onStart()
-        //carga los datos
-//        chargeDataRV("cap")
+        binding.editTextF2.setOnEditorActionListener { textView, actionId, keyEvent ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val inputMethodManager =
+                    requireContext()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(
+                    binding.editTextF2.windowToken, 0
+                )
 
-        binding.rvSwipe.setOnRefreshListener {
-//            chargeDataRV("cap")
-            binding.rvSwipe.isRefreshing = false
-        }
-        binding.rvMarvelChars.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+                chargeDataRV(textView.text.toString())
 
-                if (dy > 0) {
-                    val v = lmanager.childCount
-                    val p = lmanager.findFirstVisibleItemPosition()
-                    val t = lmanager.itemCount
-                    if ((v + p) >= t) {
-                        lifecycleScope.launch((Dispatchers.IO)) {
-                            val newItems = JikanAnimeLogic().getAllanimes()
-                            withContext(Dispatchers.Main) {
-                                rvAdapter.updateListItems(newItems)
-                            }
-                        }
-                    }
-                }
+                return@setOnEditorActionListener true
             }
-        })
-
-        //nos sirve para filtrar informacion
-        binding.textfilder.addTextChangedListener {
-            chargeDataRV(binding.textfilder.text.toString())
+            false
         }
     }
 
@@ -89,11 +67,13 @@ class SecondFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Main) {
             marvelCharsItems = withContext(Dispatchers.IO) {
                 return@withContext (MarvelLogic().getMarvelChars(
-                    search, 99
+                    search, 10
                 ))
             }
-            rvAdapter = MarvelAdapter(marvelCharsItems, fnClick = { sendMarvelItem(it) })
-            binding.rvMarvelChars.apply {
+            rvAdapter = MarvelAdapterv2(
+                marvelCharsItems
+            )
+            binding.recyclerF2.apply {
                 this.adapter = rvAdapter
                 this.layoutManager = lmanager
             }

@@ -5,20 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
+import com.example.dispositivosmoviles.ui.logic.data.getMarvelCharsDB
 import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import com.example.dispositivosmoviles.ui.logic.jikan_logic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.logic.marvel_logic.MarvelLogic
 import com.example.dispositivosmoviles.ui.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.ui.fragment.adapters.MarvelAdapter
+import com.example.dispositivosmoviles.ui.ui.utilities.DispositivosMoviles
+import com.example.dispositivosmoviles.ui.ui.utilities.Metodos
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,9 +32,10 @@ class FirstFragment : Fragment() {
     private lateinit var rvAdapter: MarvelAdapter
     private lateinit var gManager: GridLayoutManager
 
-    //    private var rvAdapter : MarvelAdapter = MarvelAdapter{sendMarvelItem(it)}
-    //    private var page = 1
     private var marvelCharsItems: MutableList<marvelCharacters> = mutableListOf<marvelCharacters>()
+
+    private val limit = 9
+    private var offset = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +61,7 @@ class FirstFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        /*
         val names = arrayListOf<String>(
             "Sofia", "Andrea", "Carla", "Ninett", "Monica"
         )
@@ -66,12 +70,13 @@ class FirstFragment : Fragment() {
             requireActivity(), R.layout.simple_layout, names
         )
         binding.spinner.adapter = adapter
+         */
 
         //carga los datos
-        chargeDataRVDB(5)
+        chargeDataRVInit(offset, limit)
 
         binding.rvSwipe.setOnRefreshListener {
-            chargeDataRVDB(5)
+            chargeDataRV(offset, limit)
             binding.rvSwipe.isRefreshing = false
         }
         binding.rvMarvelPersonajes.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -97,13 +102,14 @@ class FirstFragment : Fragment() {
                                 rvAdapter.updateListItems(newItems)
                             }
                         }
+                        offset += limit
                     }
                 }
             }
         })
 
         //nos sirve para filtrar informacion
-        binding.textfilder.addTextChangedListener { textfilter ->
+        binding.editTextF1.addTextChangedListener { textfilter ->
             var newItems = marvelCharsItems.filter { items ->
                 items.name.lowercase().contains(textfilter.toString().lowercase())
             }
@@ -111,93 +117,96 @@ class FirstFragment : Fragment() {
         }
     }
 
-    //informacion del item seleccionado
-    //serializacion -> objeto a un string. Ademas de eso, es una estructura tipo json.
     private fun sendMarvelItem(item: marvelCharacters) {
-        //Los intents solo se encuentran en los fragments y en las Activities
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
-        // Esta forma de enviar informacion es ineficiente cuando se tienen mas atributos
         i.putExtra("name", item)
-//        i.putExtra("name", item.name)
-//        i.putExtra("comic", item.comic)
         startActivity(i)
     }
 
-    // Serializacion: proceso de pasar de un objeto a un string para poder enviarlo por medio de la web
-    // Parceables: Mucho mas eficiente que la serializacion, pues ejecutan de mejor manera el mismo proceso
-    // Serializacion -> Utiliza objetos JSON
-    // Parcelables   -> Son mas rapidos pero su implementacion es compleja, afortunadamente existen plugins que nos ayudan
+    fun saveMarvelItem(item: marvelCharacters): Boolean {
+        lifecycleScope.launch(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
+                if (DispositivosMoviles.getDbInstance().marvelDao()
+                        .getOneCharacter(item.id) == null
+                ) {
+                    DispositivosMoviles
+                        .getDbInstance()
+                        .marvelDao()
+                        .insertMarvelChar(listOf(item.getMarvelCharsDB()))
+                }
+            }
+        }
+        return true
+    }
 
-//    fun corrotine() {
-//        lifecycleScope.launch(Dispatchers.Main) {
-//            var name = "Edwin"
-//            name = withContext(Dispatchers.IO) {
-//                name = "Kevin"
-//                return@withContext name
-//            }
-//            binding.cardView.radius
-//        }
-//    }
-
-    private fun chargeDataRVDBAPI(pos: Int) {
+    private fun chargeDataRVAPI(search: String) {
 
         lifecycleScope.launch(Dispatchers.Main) {
-            //cambiamos a IO porque es una coneccino de dato
             marvelCharsItems = withContext(Dispatchers.IO) {
-                return@withContext (MarvelLogic().getAllMarvelCharacters( //retornamos explicitamente los datos
-                    0, 99
+                return@withContext (MarvelLogic().getMarvelChars( //retornamos explicitamente los datos
+                    search, limit
                 ))
             }
-
-
-//            rvAdapter = MarvelAdapter(
-//                JikanAnimeLogic().getAllanimes()
-////                MarvelLogic().getMarvelChars(name = search, 20)
-//            ) { sendMarvelItem(it) }//entre llaves se manda los lambdas
-
             //llamamos al adapter de nuestra data
-            rvAdapter = MarvelAdapter(marvelCharsItems, fnClick = { sendMarvelItem(it) })
+            rvAdapter = MarvelAdapter(
+                marvelCharsItems,
+                { sendMarvelItem(it) },
+                { saveMarvelItem(it) }
+            )
 
             // en ves del withContext reeplazamos por binding, para optimizar codigo
             binding.rvMarvelPersonajes.apply {
                 this.adapter = rvAdapter
                 this.layoutManager = lmanager
             }
-//            withContext(Dispatchers.Main) {
-//                with(binding.rvMarvelPersonajes) {
-//                    this.adapter = rvAdapter
-//                    this.layoutManager = lmanager
-//                    this.layoutManager = LinearLayoutManager(
-//                        requireActivity(),
-//                        LinearLayoutManager.VERTICAL,
-//                        false
-//                    )
         }
+        this.offset += this.limit
     }
 
-    fun chargeDataRVDB(pos: Int) {
+    fun chargeDataRV(offset: Int, limit: Int) {
 
         lifecycleScope.launch(Dispatchers.Main) {
             //cambiamos a IO porque es una coneccino de dato
             marvelCharsItems = withContext(Dispatchers.IO) {
-                var items = MarvelLogic().getAllMarvelCharsDB().toMutableList()
-
-                if (items.isEmpty()) {
-                    items = (MarvelLogic().getAllMarvelCharacters(0, 99))
-                    MarvelLogic().insertMarvelCharstoDB(items)
-                }
-                return@withContext items
+                return@withContext MarvelLogic().getAllMarvelCharacters(offset, limit)
             }
-
-            rvAdapter = MarvelAdapter(marvelCharsItems)
-            { sendMarvelItem(it) }
+            rvAdapter = MarvelAdapter(
+                marvelCharsItems,
+                { sendMarvelItem(it) },
+                { saveMarvelItem(it) }
+            )
 
             binding.rvMarvelPersonajes.apply {
                 this.adapter = rvAdapter
-                //lo reemplazo por otro manager
                 this.layoutManager = lmanager
-                gManager.scrollToPositionWithOffset(pos, 10)
             }
+        }
+        this.offset += this.limit
+    }
+
+    fun chargeDataRVInit(offset: Int, limit: Int) {
+        if (Metodos().isOnline(requireActivity())) {
+            lifecycleScope.launch(Dispatchers.Main) {
+                MarvelLogic().getInitChar(offset, limit)
+                marvelCharsItems = withContext(Dispatchers.IO) {
+                    MarvelLogic().getInitChar(offset, limit)
+                    //Lo que estaba aqui se debe poner en el LOGIC, Saludos
+                }
+            }
+            rvAdapter = MarvelAdapter(
+                marvelCharsItems,
+                { sendMarvelItem(it) },
+                { saveMarvelItem(it) }
+            )
+
+            //no es necesario un with contexto si hay IO en un Main (return)
+            binding.rvMarvelPersonajes.apply {
+                this.adapter = rvAdapter
+                this.layoutManager = lmanager
+            }
+            this.offset += this.limit
+        } else {
+            Snackbar.make(binding.cardView, "No hay conexion", Snackbar.LENGTH_LONG).show()
         }
     }
 }

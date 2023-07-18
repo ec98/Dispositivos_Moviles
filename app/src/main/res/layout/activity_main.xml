@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
     <TextView
         android:id="@+id/textView7"
@@ -31,10 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnResult" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnResult"
         style="@style/ButtonsGeneral"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
@@ -183,7 +183,7 @@
 
     <Button
         android:drawableLeft="@drawable/icons8_twitter_13"
-        android:id="@+id/button"
+        android:id="@+id/btnSearch"
         style="@style/ButtonsGeneral"
         android:layout_width="wrap_content"
         android:layout_height="44dp"

@@ -1,12 +1,16 @@
 package com.example.dispositivosmoviles.ui.ui.activities
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.location.Geocoder
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
@@ -17,6 +21,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.ui.data.validator.LoginValidator
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 import java.util.UUID
@@ -27,6 +33,9 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class MainActivity : AppCompatActivity() {
 
+    //location user
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
     private lateinit var binding: ActivityMainBinding
     // (Lateinit) un gran poder conlleva una gran responsabilidad
 
@@ -34,14 +43,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //se inicializa con un contexto this
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
     override fun onStart() {
         super.onStart()
         initClass()
-
+        //val db = DispositivosMoviles.getDbInstance()
+        //db.marvelDao()
     }
 
+    @SuppressLint("ResourceType", "MissingPermission")
     private fun initClass() {
         binding.btnLogin.setOnClickListener {
             val username = binding.txtUser.text.toString()
@@ -62,7 +76,58 @@ class MainActivity : AppCompatActivity() {
                 ).setBackgroundTint(Color.BLACK).show()
             }
         }
+
+        val locationContract =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { itGranted ->
+                when (itGranted) {
+                    true -> {
+                        //accedamos a la ubicacion del usuario
+                        val task = fusedLocationProviderClient.lastLocation
+                        task.addOnSuccessListener { itLocation ->
+                            if (task.result != null) {
+                                Snackbar.make(
+                                    binding.txtUser,
+                                    "${itLocation.latitude}, ${itLocation.longitude}",
+                                    Snackbar.LENGTH_LONG
+                                )
+                                    .show()
+                            } else {
+                                Snackbar.make(
+                                    binding.txtUser,
+                                    "Encienda el gps, por favor oe!",
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+                            //                            .show()
+                            val a = Geocoder(this)
+                            a.getFromLocation(itLocation.latitude, itLocation.longitude, 1)
+                        }
+//                        Snackbar.make(binding.textView2, "Permiso concedido", Snackbar.LENGTH_LONG)
+                    }
+                    //solicitar permiso por si el usuario deniega
+                    shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
+                        Snackbar.make(
+                            binding.textView2,
+                            "Ayude con el permiso porfa",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
+
+                    false -> {
+                        Snackbar.make(binding.textView2, "Denegado", Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+                }
+            }
+
         binding.btnSearch.setOnClickListener {
+            //da un aproximado de localizacion
+//            locationContract.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+            //da el aproximado exacto de localizacion
+            locationContract.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+
+
             //solo estoy haciendo que me abra
             //no especifico un punto de llegada.
             /*
@@ -75,18 +140,18 @@ class MainActivity : AppCompatActivity() {
                 Uri.parse("tel:0123456789") //telefono
             )
              */
-            val query = Intent(
-                Intent.ACTION_WEB_SEARCH //busqueda de web
-            )
-            query.setClassName(
-                //Los parametros para abrir una aplicacion especifica
-                "com.google.android.googlequicksearchbox",
-                "com.google.android.googlequicksearchbox.SearchActivity"
-                //manda parametros que necesita una accion de lanzamiento
-            )
-            //es un query que permite buscar algo determinado
-            query.putExtra(SearchManager.QUERY, "UCE")
-            startActivity(query)
+//            val query = Intent(
+//                Intent.ACTION_WEB_SEARCH //busqueda de web
+//            )
+//            query.setClassName(
+//                //Los parametros para abrir una aplicacion especifica
+//                "com.google.android.googlequicksearchbox",
+//                "com.google.android.googlequicksearchbox.SearchActivity"
+//                //manda parametros que necesita una accion de lanzamiento
+//            )
+//            //es un query que permite buscar algo determinado
+//            query.putExtra(SearchManager.QUERY, "UCE")
+//            startActivity(query)
         }
 
         //el lanzamiento del activity

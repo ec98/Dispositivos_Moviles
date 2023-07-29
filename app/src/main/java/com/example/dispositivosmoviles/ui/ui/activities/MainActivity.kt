@@ -9,11 +9,11 @@ import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.provider.Settings
 import android.speech.RecognizerIntent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -23,14 +23,17 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.ui.data.validator.LoginValidator
+import com.example.dispositivosmoviles.ui.ui.utilities.MyLocationManager
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
+import com.google.android.gms.location.SettingsClient
 import com.google.android.material.snackbar.Snackbar
 import java.util.Locale
 import java.util.UUID
@@ -41,18 +44,24 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
+    // Ubicacion y GPS
     //location user
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-    private lateinit var binding: ActivityMainBinding
-    // (Lateinit) un gran poder conlleva una gran responsabilidad
-
     //locationRequest
     private lateinit var locationRequest: LocationRequest
+
+    //locationCallback
     private lateinit var locationCallback: LocationCallback
 
     //variable nueva
     private var currentLocation: Location? = null
+
+    //variables nuevas para el cliente y construccion de localizacion
+    private lateinit var client: SettingsClient
+    private lateinit var locationSettingRequest: LocationSettingsRequest
 
     private val speechToText =
         registerForActivityResult(StartActivityForResult()) { activityResult ->
@@ -103,56 +112,98 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             when (isGranted) {
                 true -> {
-                    //accedamos a la ubicacion del usuario
-                    val task = fusedLocationProviderClient.lastLocation
-                    task.addOnSuccessListener { itLocation ->
-                        val alert = AlertDialog.Builder(
-                            this,
-                            androidx.appcompat.R.style.AlertDialog_AppCompat
-                        )
-                        alert.apply {
-                            setTitle("Alerta")
-                            setMessage("Existe un problema del posicionamiento global en el sistema")
-                            setPositiveButton("it's ok!") { dialog, id ->
-                                dialog.dismiss()
+
+                    client.checkLocationSettings(locationSettingRequest).apply {
+                        addOnSuccessListener {
+                            //accedamos a la ubicacion del usuario
+                            val task = fusedLocationProviderClient.lastLocation
+                            task.addOnSuccessListener { itLocation ->
+                                fusedLocationProviderClient.requestLocationUpdates(
+                                    locationRequest,
+                                    locationCallback,
+                                    Looper.getMainLooper()
+                                )
                             }
-                            setCancelable(
-                                false
-                            )
-//                            setNegativeButton()
-                        }.create()
-                        alert.show()
-                        //colocar la segunda funcion
-                        fusedLocationProviderClient.requestLocationUpdates(
-                            locationRequest,
-                            locationCallback,
-                            Looper.getMainLooper()
-                        )
-//                        if (task.result != null) {
-//                            Snackbar.make(
-//                                binding.txtUser,
-//                                "${itLocation.latitude}, ${itLocation.longitude}",
-//                                Snackbar.LENGTH_LONG
-//                            )
-//                                .show()
-//                        } else {
-//                            Snackbar.make(
-//                                binding.txtUser,
-//                                "Encienda el gps, por favor oe!",
-//                                Snackbar.LENGTH_LONG
-//                            ).show()
-//                        }
-//                        val a = Geocoder(this)
-//                        a.getFromLocation(itLocation.latitude, itLocation.longitude, 1)
-                    }
-                    task.addOnFailureListener { itException ->
-                        if (itException is ResolvableApiException) {
-                            itException.startResolutionForResult(
-                                this@MainActivity,
-                                LocationSettingsStatusCodes.RESOLUTION_REQUIRED
-                            )
+                        }
+
+                        addOnFailureListener { itException ->
+                            if (itException is ResolvableApiException) {
+                                itException.startResolutionForResult(
+                                    this@MainActivity,
+                                    LocationSettingsStatusCodes.RESOLUTION_REQUIRED
+                                )
+                            }
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         }
                     }
+
+                    //mensaje de alerta
+                    //aplicamos variable explicito
+//                    val alert = AlertDialog.Builder(this).apply {
+//                        setTitle("Notificacion")
+//                        setMessage("Por favor verifique que el GPS esta activo")
+//                        setPositiveButton("Verificar"){dialog,id ->
+//
+//                            //accediendo local, necesitamos intent para acceder
+//                            val i = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+//                            startActivity(i)
+//                            dialog.dismiss()
+//                        }
+//                        setCancelable(false)
+//                    }.show()
+
+                    //acceder a la ubicacion
+//                    task.addOnSuccessListener { itLocation ->
+//                        val alert = AlertDialog.Builder(
+//                            this,
+//                            androidx.appcompat.R.style.AlertDialog_AppCompat
+//                        )
+                    //aplicamos variable implicito
+//                        alert.apply {
+//                            setTitle("Alerta")
+//                            setMessage("Existe un problema del posicionamiento global en el sistema")
+//                            setPositiveButton("it's ok!") { dialog, id ->
+//                                dialog.dismiss()
+//                            }
+//                            setCancelable(
+//                                false
+//                            )
+////                            setNegativeButton()
+//                        }.create()
+                    //llamamos
+//                        alert.show()
+//                        //colocar la segunda funcion
+//                        fusedLocationProviderClient.requestLocationUpdates(
+//                            locationRequest,
+//                            locationCallback,
+//                            Looper.getMainLooper()
+//                        )
+                    //si encuentra o no
+////                        if (task.result != null) {
+////                            Snackbar.make(
+////                                binding.txtUser,
+////                                "${itLocation.latitude}, ${itLocation.longitude}",
+////                                Snackbar.LENGTH_LONG
+////                            )
+////                                .show()
+////                        } else {
+////                            Snackbar.make(
+////                                binding.txtUser,
+////                                "Encienda el gps, por favor oe!",
+////                                Snackbar.LENGTH_LONG
+////                            ).show()
+////                        }
+////                        val a = Geocoder(this)
+////                        a.getFromLocation(itLocation.latitude, itLocation.longitude, 1)
+//                    }
+//                    task.addOnFailureListener { itException ->
+//                        if (itException is ResolvableApiException) {
+//                            itException.startResolutionForResult(
+//                                this@MainActivity,
+//                                LocationSettingsStatusCodes.RESOLUTION_REQUIRED
+//                            )
+//                        }
+//                    }
 //                        Snackbar.make(binding.textView2, "Permiso concedido", Snackbar.LENGTH_LONG)
                 }
                 //solicitar permiso por si el usuario denega necio
@@ -199,9 +250,17 @@ class MainActivity : AppCompatActivity() {
                             "Ubicacion: ${itLocation.latitude}, " + "${itLocation.longitude}"
                         )
                     }
+                } else {
+                    Log.d("UCE", "El GPS esta apagado")
                 }
             }
         }
+
+        //locationRequest
+        locationSettingRequest =
+            LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build()
+        //client
+        client = LocationServices.getSettingsClient(this)
     }
 
     override fun onPause() {
@@ -216,7 +275,6 @@ class MainActivity : AppCompatActivity() {
         //db.marvelDao()
     }
 
-    @SuppressLint("ResourceType", "MissingPermission")
     private fun initClass() {
         binding.btnLogin.setOnClickListener {
             val username = binding.txtUser.text.toString()
@@ -239,7 +297,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+        //tw
         binding.btnSearch.setOnClickListener {
             //da un aproximado de localizacion
 //            locationContract.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -322,8 +380,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+        //fb
         binding.btnResult.setOnClickListener {
+            fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+
             //recupero el resultado dependiendo del resultado
 //            val resIntent = Intent(this, ResultActivity::class.java)
 //            appResulLocal.launch(resIntent)
@@ -356,5 +416,12 @@ class MainActivity : AppCompatActivity() {
             preferes[stringPreferencesKey("session")] = UUID.randomUUID().toString()
             preferes[stringPreferencesKey("email")] = "ecpiruch@uce.edu.ec"
         }
+    }
+
+    private fun test() {
+
+        var location = MyLocationManager()
+//        location.context = this
+        location.getUserLocation()
     }
 }

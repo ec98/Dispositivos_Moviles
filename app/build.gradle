@@ -78,4 +78,7 @@ dependencies {
 
     //location user
     implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    //notificacion (androidx nuevas apis)
+    implementation "androidx.core:core-ktx:1.10.1"
 }

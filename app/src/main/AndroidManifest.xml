@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ui.activities.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ui.activities.MainActivity"
             android:exported="false" />
         <activity
@@ -32,7 +35,7 @@
             android:name=".ui.ui.activities.PrincipalActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ui.activities.CameraActivity"
+            android:name=".ui.ui.activities.NotificationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

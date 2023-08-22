@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1060436983936",
+    "project_id": "dispositivos-moviles-4d7ae",
+    "storage_bucket": "dispositivos-moviles-4d7ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060436983936:android:707bfc5a58130a9b65a665",
+        "android_client_info": {
+          "package_name": "com.example.dispositivosmoviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060436983936-kldni51fv938dck3btua4sb2g42op61f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBEGw7rbnRBWgmBG-5oNWKIClJ3vA0V7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060436983936-kldni51fv938dck3btua4sb2g42op61f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

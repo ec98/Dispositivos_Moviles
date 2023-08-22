@@ -5,13 +5,13 @@ import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.speech.RecognizerIntent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +22,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
-import com.example.dispositivosmoviles.ui.data.validator.LoginValidator
 import com.example.dispositivosmoviles.ui.ui.utilities.MyLocationManager
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -34,7 +33,11 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.Locale
 import java.util.UUID
 
@@ -62,6 +65,9 @@ class MainActivity : AppCompatActivity() {
     //variables nuevas para el cliente y construccion de localizacion
     private lateinit var client: SettingsClient
     private lateinit var locationSettingRequest: LocationSettingsRequest
+
+    //Para Firebase
+    private lateinit var auth: FirebaseAuth
 
     private val speechToText =
         registerForActivityResult(StartActivityForResult()) { activityResult ->
@@ -228,6 +234,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        // location
         //se inicializa por un contexto this.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -255,12 +263,99 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        //client
+        client = LocationServices.getSettingsClient(this)
 
         //locationRequest
         locationSettingRequest =
             LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build()
-        //client
-        client = LocationServices.getSettingsClient(this)
+
+
+        //firebase
+        auth = Firebase.auth
+
+//        correo y password
+        binding.btnLogin.setOnClickListener {
+            authWithFireBaseEmail(
+                binding.txtUser.text.toString(),
+                binding.txtPassword.text.toString()
+            )
+//            signInWithEmailAndPassword(
+//                binding.txtUser.toString(),
+//                binding.txtPassword.toString()
+//            )
+        }
+    }
+
+    //autetincando sesion
+    private fun authWithFireBaseEmail(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(Constant.TAG, "createUserWithEmailAndPassword:success")
+//                    val user = auth.currentUser
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication Successfull.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(Constant.TAG, "createUserWithEmailAndPassword:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }
+
+    //iniciando sesion
+    private fun signInWithEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(Constant.TAG, "signInWithEmail:success")
+//                    val user = auth.currentUser
+                    startActivity(Intent(this, BiometricActivity::class.java))
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication Succesfull.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(Constant.TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+    }
+
+    //recuperando correo
+    private fun recoveryPasswordWithEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { itTask ->
+                if (itTask.isSuccessful) {
+                    Toast.makeText(
+                        this,
+                        "Correo de recuperacion enviado correcto",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    MaterialAlertDialogBuilder(this).apply {
+                        setTitle("Alerta")
+                        setMessage("Su correo de recuperacion ha sido procesado correcto")
+                        setCancelable(true)
+                    }
+                }
+            }
     }
 
     override fun onPause() {
@@ -270,32 +365,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        initClass()
+//        initClass()
         //val db = DispositivosMoviles.getDbInstance()
         //db.marvelDao()
     }
 
     private fun initClass() {
-        binding.btnLogin.setOnClickListener {
-            val username = binding.txtUser.text.toString()
-            val password = binding.txtPassword.text.toString()
-
-            val isValid = LoginValidator().checkLogin(username, password)
-
-            if (isValid) {
-
-                //Corrutinas
-
-                val intent = Intent(this, PrincipalActivity::class.java)
-                intent.putExtra("var1", username)
-                startActivity(intent)
-            } else {
-                Snackbar.make(
-                    binding.textView2, "Usuario o contraseña inválidos", Snackbar.LENGTH_LONG
-                ).setBackgroundTint(Color.BLACK).show()
-            }
-        }
-
+//        binding.btnLogin.setOnClickListener {
+//            val username = binding.txtUser.text.toString()
+//            val password = binding.txtPassword.text.toString()
+//
+//            val isValid = LoginValidator().checkLogin(username, password)
+//
+//            if (isValid) {
+//
+//                //Corrutinas
+//
+//                val intent = Intent(this, PrincipalActivity::class.java)
+//                intent.putExtra("var1", username)
+//                startActivity(intent)
+//            } else {
+//                Snackbar.make(
+//                    binding.textView2, "Usuario o contraseña inválidos", Snackbar.LENGTH_LONG
+//                ).setBackgroundTint(Color.BLACK).show()
+//            }
+//        }
 
         //tw
         binding.btnSearch.setOnClickListener {

@@ -412,16 +412,16 @@ class MainActivity : AppCompatActivity() {
 
             //solo estoy haciendo que me abra
             //no especifico un punto de llegada.
-            /*
+
             val intent = Intent(
                 Intent.ACTION_VIEW,
                 //Uri.parse("http://www.google.com.ec") //buscador de google
                 //con geo: se puede mandar la latitud y longitud de una pos del mapa
-                //Uri.parse("geo:-0.093622,-78.4403936") //buscador de un mapa
+                Uri.parse("geo:-0.093622,-78.4403936") //buscador de un mapa
                 //Uri.parse("https://www.dota2.com/leaderboards/?l=spanish#americas") //dota rankeds
-                Uri.parse("tel:0123456789") //telefono
+                //Uri.parse("tel:0123456789") //telefono
             )
-             */
+
 //            val query = Intent(
 //                Intent.ACTION_WEB_SEARCH //busqueda de web
 //            )
@@ -433,7 +433,16 @@ class MainActivity : AppCompatActivity() {
 //            )
 //            //es un query que permite buscar algo determinado
 //            query.putExtra(SearchManager.QUERY, "UCE")
-//            startActivity(query)
+            startActivity(intent)
+        }
+        //llamar emergencia
+        binding.btnphone.setOnClickListener {
+
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("tel:911") //telefono
+            )
+            startActivity(intent)
         }
 
         //el lanzamiento del activity

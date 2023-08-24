@@ -6,6 +6,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
@@ -20,8 +21,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.bumptech.glide.Glide
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
+import com.example.dispositivosmoviles.ui.ui.Constants.Constant
 import com.example.dispositivosmoviles.ui.ui.utilities.MyLocationManager
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,7 +36,6 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -68,6 +70,11 @@ class MainActivity : AppCompatActivity() {
 
     //Para Firebase
     private lateinit var auth: FirebaseAuth
+
+    //gifs
+    private lateinit var galaxyWelcom: String
+    private lateinit var espacio: String
+
 
     private val speechToText =
         registerForActivityResult(StartActivityForResult()) { activityResult ->
@@ -234,6 +241,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //gif
+        galaxyWelcom = binding.presentacionImagen.toString()
+        var url1 =
+            "https://3.bp.blogspot.com/-4SDnliF11SQ/VRNwUV5EyfI/AAAAAAAAAH4/B5N4hjnqp3k/s1600/planeta-gif-2b924d2.gif"
+        var urlparse1: Uri = Uri.parse(url1)
+        Glide.with(this).load(urlparse1).into(binding.presentacionImagen)
+
+
+        espacio = binding.presentacionMain.toString()
+        var url2 = "https://usagif.com/wp-content/uploads/gif/outerspace-72.gif"
+        var urlparse2: Uri = Uri.parse(url2)
+        Glide.with(this).load(urlparse2).into(binding.presentacionMain)
 
         // location
         //se inicializa por un contexto this.
@@ -275,15 +294,23 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
 //        correo y password
-        binding.btnLogin.setOnClickListener {
+        binding.btnCrear.setOnClickListener {
             authWithFireBaseEmail(
                 binding.txtUser.text.toString(),
                 binding.txtPassword.text.toString()
             )
-//            signInWithEmailAndPassword(
-//                binding.txtUser.toString(),
-//                binding.txtPassword.toString()
-//            )
+        }
+
+        binding.btnLogin.setOnClickListener {
+            signInWithEmailAndPassword(
+                binding.txtUser.text.toString(),
+                binding.txtPassword.text.toString()
+            )
+        }
+
+        binding.recuperacionCorreo.setOnClickListener {
+            val i = Intent(this, RecoveryEmailPass::class.java)
+            startActivity(i)
         }
     }
 
@@ -319,8 +346,12 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(Constant.TAG, "signInWithEmail:success")
-//                    val user = auth.currentUser
-                    startActivity(Intent(this, BiometricActivity::class.java))
+                    val user = auth.currentUser
+                    user?.email?.let { userEmail ->
+                        val intent = Intent(this, PrincipalActivity::class.java)
+                        intent.putExtra("user_email", userEmail)
+                        startActivity(intent)
+                    }
                     Toast.makeText(
                         baseContext,
                         "Authentication Succesfull.",
@@ -338,26 +369,6 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    //recuperando correo
-    private fun recoveryPasswordWithEmail(email: String) {
-        auth.sendPasswordResetEmail(email)
-            .addOnCompleteListener { itTask ->
-                if (itTask.isSuccessful) {
-                    Toast.makeText(
-                        this,
-                        "Correo de recuperacion enviado correcto",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                    MaterialAlertDialogBuilder(this).apply {
-                        setTitle("Alerta")
-                        setMessage("Su correo de recuperacion ha sido procesado correcto")
-                        setCancelable(true)
-                    }
-                }
-            }
-    }
-
     override fun onPause() {
         super.onPause()
         fusedLocationProviderClient.removeLocationUpdates(locationCallback)
@@ -365,7 +376,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-//        initClass()
+        initClass()
         //val db = DispositivosMoviles.getDbInstance()
         //db.marvelDao()
     }

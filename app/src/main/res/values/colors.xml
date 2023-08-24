@@ -2,12 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="low_gray">#C1C1C1</color>
+    <color name="low_gray">#9CC5C5C5</color>
     <color name="amarillo">#F4D537</color>
     <color name="vanilla">#D4E09B</color>
     <color name="azul_claro">#98A7EC</color>
+    <color name="azul_cielo">#6E87FB</color>
     <color name="rojo_pasion">#C11313</color>
     <color name="azul_marino">#3F51B5</color>
+    <color name="morado_cielo">#D675E6</color>
     <color name="verde_marino">#4FEA95</color>
     <color name="botton_accept">#934BD1</color>
     <color name="botton_search">#D8613C</color>
@@ -16,7 +18,10 @@
     <color name="facebook_color">#3B5998</color>
     <color name="rojoPuro_color">#FF6161</color>
     <color name="color_naranja">#E6CCA0</color>
-    <color name="color_verde">#E6CCA0</color>
+    <color name="color_verde">#71D575</color>
     <color name="color_rosa">#FF9FD9</color>
+    <color name="color_iconMenu">#73DFED</color>
+
+    <color name="transparenteRecuperar">#00000000</color>
 
 </resources>

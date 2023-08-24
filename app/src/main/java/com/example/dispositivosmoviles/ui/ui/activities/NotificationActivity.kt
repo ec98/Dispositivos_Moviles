@@ -98,7 +98,7 @@ class NotificationActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     fun sendNotification() {
-        val intent = Intent(this, NotificacionDetalles::class.java).apply {
+        val intent = Intent(this, CameraActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(

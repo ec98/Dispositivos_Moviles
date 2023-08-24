@@ -8,34 +8,44 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:backgroundTint="@color/verde_marino"
         app:cardCornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imageChat"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"/>
+
         <TextView
-            style="@style/textSearch"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="90dp"
-            android:paddingHorizontal="10dp"
-            android:text="CHATGPT"
-            android:textAlignment="center"
+            android:layout_gravity="left"
+            android:text="Chat GPT"
+            android:background="@drawable/border"
+            android:textStyle="bold"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/chat_logo" />
+        <EditText
+            android:id="@+id/textoIntro"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="25dp"
+            android:hint="Escribe algo..."
+            android:textStyle="italic"
+            android:gravity="center"
+            android:background="@drawable/border"
+            android:layout_marginVertical="600dp" />
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>

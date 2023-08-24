@@ -4,34 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context=".ui.ui.activities.MainActivity">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/primer_act_olvido_su_contrase_a"
-        android:textColor="@color/low_gray"
-        android:textSize="15dp"
+    <ImageView
+        android:id="@+id/presentacionMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
+
+    <Button
+        android:id="@+id/recuperacion_Correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/primer_act_registrese"
-        android:textColor="@color/rojoPuro_color"
-        android:textSize="15sp"
+        android:layout_marginBottom="64dp"
+        android:text="¿Olvido su Password?"
+        android:background="@color/transparenteRecuperar"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnResult" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnResult"
@@ -39,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/facebook_color"
-        android:drawableLeft="@drawable/icons8_facebook_13"
+        android:backgroundTint="@color/morado_cielo"
+        android:drawableLeft="@drawable/baseline_keyboard_voice_24"
         android:gravity="center"
-        android:text="@string/primer_act_bottonFacebook"
+        android:text="LANGUAGE VOZ"
 
         android:textSize="13dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,11 +83,11 @@
         android:layout_height="37dp"
 
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/black"
         android:hint="example@email.com"
+        android:background="@drawable/border"
 
         android:padding="8dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textColorHint="@color/low_gray"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,27 +99,39 @@
         style="@style/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/prm_act_pedidosOnline"
-        android:textColor="@color/black"
+        android:text="@string/prm_act_Bienvenido"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/presentacionImagen" />
+
+    <Button
+        android:id="@+id/btn_crear"
+        style="@style/ButtonsGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/rojoPuro_color"
+        android:text="@string/primer_act_bottonCrear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_password"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_login"
         style="@style/ButtonsGeneral"
-        android:layout_width="252dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/rojoPuro_color"
+        android:layout_marginEnd="88dp"
+        android:backgroundTint="@color/azul_cielo"
         android:text="@string/primer_act_bottonIngresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_password"
         tools:ignore="MissingConstraints" />
 
@@ -131,11 +143,11 @@
         android:layout_height="37dp"
 
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/border"
 
         android:hint="***********"
         android:padding="8dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textColorHint="@color/low_gray"
         android:textSize="16sp"
         android:inputType="textPassword"
@@ -144,7 +156,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/presentacionImagen"
         android:layout_width="180dp"
         android:layout_height="163dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -152,8 +164,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028"
-        app:srcCompat="@drawable/logo_edi" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <TextView
         android:id="@+id/textView3"
@@ -182,16 +193,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:drawableLeft="@drawable/icons8_twitter_13"
+        android:drawableLeft="@drawable/baseline_location_on_24"
         android:id="@+id/btnSearch"
         style="@style/ButtonsGeneral"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/twitter_color"
+        android:backgroundTint="@color/verde_marino"
         android:gravity="center"
 
-        android:text="@string/primer_act_bottonTwitter"
+        android:text="Ubication"
         android:textSize="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"

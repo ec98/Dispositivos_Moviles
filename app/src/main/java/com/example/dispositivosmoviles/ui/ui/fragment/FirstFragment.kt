@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.ui.ui.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,14 +14,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
+import com.example.dispositivosmoviles.ui.logic.data.UserDataStore
 import com.example.dispositivosmoviles.ui.logic.data.getMarvelCharsDB
 import com.example.dispositivosmoviles.ui.logic.data.marvelCharacters
 import com.example.dispositivosmoviles.ui.logic.jikan_logic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.logic.marvel_logic.MarvelLogic
 import com.example.dispositivosmoviles.ui.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.ui.activities.dataStore
-import com.example.dispositivosmoviles.ui.ui.data.UserDataStore
 import com.example.dispositivosmoviles.ui.ui.fragment.adapters.MarvelAdapter
 import com.example.dispositivosmoviles.ui.ui.utilities.DispositivosMoviles
 import com.example.dispositivosmoviles.ui.ui.utilities.Metodos
@@ -32,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FirstFragment : Fragment() {
-
     private lateinit var binding: FragmentFirstBinding
     private lateinit var lmanager: LinearLayoutManager
     private lateinit var rvAdapter: MarvelAdapter
@@ -62,6 +63,7 @@ class FirstFragment : Fragment() {
             false
         )
         gManager = GridLayoutManager(requireActivity(), 2)
+
         return binding.root
     }
 

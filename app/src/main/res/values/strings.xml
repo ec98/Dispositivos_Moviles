@@ -2,10 +2,12 @@
     <!--Primer Activity ( Main Activity )-->
     <string name="app_name">Dispositivos Moviles</string>
     <string name="prm_act_pedidosOnline"> Pedidos Online</string>
+    <string name="prm_act_Bienvenido"> Bienvenido humano</string>
     <string name="primer_act_hola_es_bueno_verte_nuevamente">¡Hola! Es bueno verte nuevamente</string>
     <string name="primer_act_correo">Correo</string>
     <string name="primer_act_password">Password</string>
     <string name="primer_act_bottonIngresar">Ingresar</string>
+    <string name="primer_act_bottonCrear">Crear</string>
     <string name="primer_act_text_o_con_ctese_usando_las_redes_sociales">O conéctese usando las redes sociales</string>
     <string name="primer_act_bottonTwitter">Twitter</string>
     <string name="primer_act_bottonFacebook">Facebook</string>

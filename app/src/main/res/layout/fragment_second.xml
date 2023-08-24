@@ -22,16 +22,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="23dp"
-        android:imeOptions="actionDone"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textColor="@color/white"
+        android:drawableLeft="@drawable/baseline_search_24"
+        android:textColor="@color/black"
+        android:hint="Busca tu personaje favorito"
         android:textSize="25sp"
+        android:background="@drawable/border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:drawableLeft="@drawable/baseline_search_24"
-        tools:textColor="@color/low_gray"
         tools:textStyle="italic" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class MarvelAdapter(
     private var items: List<marvelCharacters>,
     private var fnClick: (marvelCharacters) -> Unit, //Este unit no te devuelve nada.
-    private var fnSave: (marvelCharacters) -> Boolean //devuelve true si guarda o false
+    private var fnSave: (marvelCharacters) -> Unit //devuelve true si guarda o false
 ) :
 
 
@@ -29,7 +29,7 @@ class MarvelAdapter(
         fun render(
             item: marvelCharacters,
             fnClick: (marvelCharacters) -> Unit,
-            fnSave: (marvelCharacters) -> Boolean
+            fnSave: (marvelCharacters) -> Unit
         ) { //tomar cada uno de los items de la lista
             //println("Recibiendo a ${item.nombre}")
             binding.txtName.text = item.name

@@ -6,18 +6,18 @@
         android:id="@+id/inicio"
         android:enabled="true"
         android:icon="@drawable/baseline_home_24"
-        android:title="@string/menu_inicio"
+        android:title=""
         android:visible="true" />
     <item
         android:id="@+id/favoritos"
         android:enabled="true"
         android:icon="@drawable/baseline_favorite_24"
-        android:title="@string/menu_favoritos"
+        android:title=""
         android:visible="true" />
     <item
         android:id="@+id/chat"
         android:enabled="true"
         android:icon="@drawable/baseline_chat_24"
-        android:title="@string/menu_chat_gpt"
+        android:title=""
         android:visible="true" />
 </menu>

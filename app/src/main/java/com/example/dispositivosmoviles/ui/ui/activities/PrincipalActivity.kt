@@ -1,28 +1,74 @@
 package com.example.dispositivosmoviles.ui.ui.activities
 
-import android.content.Intent
+import android.animation.ValueAnimator
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
 import com.example.dispositivosmoviles.ui.ui.fragment.FirstFragment
 import com.example.dispositivosmoviles.ui.ui.fragment.SecondFragment
 import com.example.dispositivosmoviles.ui.ui.fragment.ThirtyFragment
 import com.example.dispositivosmoviles.ui.ui.utilities.FragmentManager
-import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPrincipalBinding
+    private lateinit var perfilKT: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
-        Log.d("UCE", "Entrando a Create")
+//        Log.d("UCE", "Entrando a Create")
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        perfilKT = binding.perfilImagen.toString()
+        var url1 =
+            "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/95740abd-84e1-40f6-9ea9-9a73ce727d1a/dd1n7k5-cab0598e-9815-4771-b9a0-f9e8a47f934e.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzk1NzQwYWJkLTg0ZTEtNDBmNi05ZWE5LTlhNzNjZTcyN2QxYVwvZGQxbjdrNS1jYWIwNTk4ZS05ODE1LTQ3NzEtYjlhMC1mOWU4YTQ3ZjkzNGUuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.QnyCmnFtwqVsNMgShNBezrBAGTjZApJX7aaHU0amG10"
+        var urlparse1: Uri = Uri.parse(url1)
+        Glide.with(this).load(urlparse1).into(binding.perfilImagen)
+
+        val targetText =
+            "K.T: Esto es solo una presentacion, abajo encontraras los menus que te llevaran a otras interfaces. ^^"
+        val durationPerLetter = 100L //duracion por letra
+
+        val valueAnimator = ValueAnimator.ofInt(0, targetText.length)
+        valueAnimator.duration = (durationPerLetter * targetText.length)
+
+        valueAnimator.addUpdateListener { animator ->
+            val currentText = targetText.substring(0, animator.animatedValue as Int)
+            binding.presentacionText.text = currentText
+        }
+        valueAnimator.start()
+
+        val userEmail = intent.getStringExtra("user_email")
+        binding.user.text = "Tu correo ^^: $userEmail"
+
+        if (userEmail != null) {
+            animateText(userEmail, binding.user)
+        }
+    }
+
+    private fun animateText(text: String, textView: TextView) {
+        val words = text.split(" ")
+        var currentIndex = 0
+
+        Handler(mainLooper).postDelayed(object : Runnable {
+            override fun run() {
+                if (currentIndex < words.size) {
+                    val word = words[currentIndex]
+                    textView.text = textView.text.toString() + " " + word
+                    currentIndex++
+                    Handler(mainLooper).postDelayed(this, 500) // Ajusta el tiempo entre palabras
+                }
+            }
+        }, 0) // Iniciar inmediatamente
     }
 
     override fun onStart() {
@@ -35,22 +81,14 @@ class PrincipalActivity : AppCompatActivity() {
         //    name = it.getString("var1") ?: ""
         //}
 
-        Log.d("UCE", "Hello $name")
+//        Log.d("UCE", "Hello $name")
         binding.textView.text = "Welcome $name!"
-
-        Log.d("UCE", "Entrando a Start")
+//        Log.d("UCE", "Entrando a Start")
         initClass()
     }
 
     private fun initClass() {
-        binding.imageButton2.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    MainActivity::class.java
-                )
-            )
-        }
+
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.inicio -> {
@@ -107,8 +145,6 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
     }
-
-
 
 
 }

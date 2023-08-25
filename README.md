@@ -1,6 +1,10 @@
 # Trabajo de Dispositivos_Moviles
 Proyecto Grupal e Individual por Edwin Piruch &amp; Santiago Chango.
 
+## Layout Principal
+En la pantalla principal el enfoque es dar un vistaso animado mediante la inclucion del planeta rotando en un espacio o fondo con diseño Universal vamos a poder ingresar con un Usuario y Contraseña,
+vamos a tener dos botones los cuales son de crear o ingresar
+
 <img width="226" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/1922c34e-86d6-4e9b-8f1f-26c6bf90f306">
 <img width="224" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/572b0982-acfc-444b-a2e9-872ebe9c8abc">
 <img width="218" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/4329c9a1-3a25-4462-9ab6-0d7e27554dbc">

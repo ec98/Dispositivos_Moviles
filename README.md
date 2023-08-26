@@ -43,6 +43,9 @@ Este frame despliega una lista de Personajes de marvel con la ayuda del Api de M
 <img width="218" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/1882ef79-a954-4b46-972a-18c696011e76">
 
 ## Layout (Fragment_Second)
+En esta parte vamos a encontrar los favoritos 
+
+<img width="221" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/460a896e-732f-461a-9e10-a8f6b8a5a446">
 
 ## Layout (Fragment_thirty)
 Este frame nos ayuda a escribir Notas personales del Usuario.
@@ -50,12 +53,18 @@ Este frame nos ayuda a escribir Notas personales del Usuario.
 <img width="289" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/c37ed126-2e44-473e-84d2-466f3e474941">
 
 
-## Layout (Principal)
-
+## Marcador
+<img width="224" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/87440765-aa73-418d-9890-1a96141b6ed0">
 <img width="224" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/0f466ceb-e4f5-4dca-b43e-d7681a066080">
-## Layout (Principal)
+
+## GPS
+
+<img width="223" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/33aea93f-0430-46ac-a5ed-6d5b6b4f3efc">
 <img width="223" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/94a5e6c0-8bab-4716-baa5-8667f9cff873">
-## Layout (Principal)
+
+## Buscador por voz
+
+<img width="227" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/3424a8a2-7fa6-4dd0-aae9-86bb1b736697">
 <img width="218" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/ffa1caa1-1497-4587-b154-eb9cc8acef90">
 
 

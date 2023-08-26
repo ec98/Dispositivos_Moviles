@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+<<<<<<< HEAD
     <color name="low_gray">#9CC5C5C5</color>
     <color name="amarillo">#F4D537</color>
     <color name="vanilla">#D4E09B</color>
@@ -10,10 +11,19 @@
     <color name="rojo_pasion">#C11313</color>
     <color name="azul_marino">#3F51B5</color>
     <color name="morado_cielo">#D675E6</color>
+=======
+    <color name="low_gray">#C1C1C1</color>
+    <color name="amarillo">#F4D537</color>
+    <color name="vanilla">#D4E09B</color>
+    <color name="azul">#6B7FDA</color>
+    <color name="rojo_pasion">#C11313</color>
+    <color name="azul_marino">#3F51B5</color>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
     <color name="verde_marino">#4FEA95</color>
     <color name="botton_accept">#934BD1</color>
     <color name="botton_search">#D8613C</color>
     <color name="text_bg">#F3E1DC</color>
+<<<<<<< HEAD
     <color name="twitter_color">#00ACEE</color>
     <color name="facebook_color">#3B5998</color>
     <color name="rojoPuro_color">#FF6161</color>
@@ -23,5 +33,7 @@
     <color name="color_iconMenu">#73DFED</color>
 
     <color name="transparenteRecuperar">#00000000</color>
+=======
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 
 </resources>

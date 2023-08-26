@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+<<<<<<< HEAD
     tools:context=".ui.ui.activities.PrincipalActivity">
+=======
+    tools:context=".MainActivity">
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 
     <TextView
         android:id="@+id/textView"
@@ -13,10 +17,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+<<<<<<< HEAD
         android:fontFamily="@font/adamina"
 
         android:gravity="center"
         android:text="@string/sda_act_welcome"
+=======
+        android:fontFamily="@font/roboto"
+
+        android:gravity="center"
+        android:text="@string/app_name_pantalla"
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
         android:textColor="@color/black"
 
         android:textSize="40sp"
@@ -25,6 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
     <!--
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
@@ -113,5 +125,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
 
+=======
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        style="@style/ButtonsGeneral"
+        android:layout_width="273dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="72dp"
+        android:background="@color/amarillo"
+        android:text="Buscar Artículo"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="66dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/unnamed"
+        app:layout_constraintStart_toEndOf="@+id/autoCompleteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 
 </androidx.constraintlayout.widget.ConstraintLayout>

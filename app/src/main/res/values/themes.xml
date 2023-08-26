@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Base.Theme.DispositivosMoviles" parent="Theme.AppCompat.DayNight.NoActionBar">
+=======
+    <style name="Base.Theme.DispositivosMoviles" parent="Theme.Material3.DayNight.NoActionBar">
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
@@ -20,15 +24,24 @@
 
     <style name="textSearch">
         <item name="android:textColor">@color/black</item>
+<<<<<<< HEAD
         <item name="android:textSize">15sp</item>
+=======
+        <item name="android:textSize">40sp</item>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textStyle">normal</item>
         <item name="android:background">@color/text_bg</item>
     </style>
 
     <style name="ButtonsGeneral">
+<<<<<<< HEAD
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">18sp</item>
+=======
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">22sp</item>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
         <item name="android:backgroundTint">@color/botton_accept</item>
         <item name="cornerRadius">8dp</item>
     </style>
@@ -41,8 +54,11 @@
         <item name="android:backgroundTint">@color/botton_search</item>
     </style>
 
+<<<<<<< HEAD
     <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/rojoPuro_color</item>
     </style>
 
+=======
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 </resources>

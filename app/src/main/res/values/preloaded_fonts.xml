@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+<<<<<<< HEAD
         <item>@font/adamina</item>
+=======
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
         <item>@font/roboto</item>
         <item>@font/satisfy</item>
     </array>

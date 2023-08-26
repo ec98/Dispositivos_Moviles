@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/59393/AndroidStudioProjects/Dispositivos_Moviles-prac3/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/Users/59393/AndroidStudioProjects/Dispositivos_Moviles-prac3/app/src/main/res/layout/activity_principal.xml" value="0.259375" />
         <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/font/roboto.xml" value="0.28958333333333336" />
@@ -13,6 +18,14 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+=======
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/font/roboto.xml" value="0.28958333333333336" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/font/satisfy.xml" value="0.28958333333333336" />
+        <entry key="..\:/Users/59393/AndroidStudioProjects/octavosemestre/DispositivosMoviles/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+      </map>
+    </option>
+  </component>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

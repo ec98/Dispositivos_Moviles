@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <!--Primer Activity ( Main Activity )-->
     <string name="app_name">Dispositivos Moviles</string>
     <string name="prm_act_pedidosOnline"> Pedidos Online</string>
@@ -29,5 +30,10 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+=======
+    <string name="app_name">Dispositivos Moviles</string>
+    <string name="app_name_pantalla"> Welcome</string>
+    <string name="app_name_pedidos"> Pedidos Online</string>
+>>>>>>> 4c2f3649b6b10066876e75f869ed482dc5289055
 
 </resources>

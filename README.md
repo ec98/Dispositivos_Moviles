@@ -29,6 +29,9 @@ vamos a tener dos botones los cuales son de crear o ingresar.
 Tambien esta implementado dos botones los cuales son de Ubicacion y consultas mediante la voz a la aplicacion de Google, al finalizar en la parte inferior tenemos un boton circular para realizar llamas de emergencia.
 
 <img width="226" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/1922c34e-86d6-4e9b-8f1f-26c6bf90f306">
+
+## FireBase Usuarios
+
 <img width="838" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/d2709770-46bf-427f-b6b3-cf06f21b7be4">
 
 ## Layout (Principal)
@@ -54,15 +57,19 @@ Este frame nos ayuda a escribir Notas personales del Usuario.
 
 
 ## Marcador
+Incluimos un boton de marcacion rapida, para algun tipo de emergencia con el numero 911 premarcado
+
 <img width="224" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/87440765-aa73-418d-9890-1a96141b6ed0">
 <img width="224" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/0f466ceb-e4f5-4dca-b43e-d7681a066080">
 
 ## GPS
+Este boton nos refleja la ubicacion del dispositivo 
 
 <img width="223" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/33aea93f-0430-46ac-a5ed-6d5b6b4f3efc">
 <img width="223" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/94a5e6c0-8bab-4716-baa5-8667f9cff873">
 
 ## Buscador por voz
+Nos ayuda a mandar un mensaje al buscador de google para tener algun tipo de respuesta
 
 <img width="227" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/3424a8a2-7fa6-4dd0-aae9-86bb1b736697">
 <img width="218" alt="image" src="https://github.com/ec98/Dispositivos_Moviles/assets/117785838/ffa1caa1-1497-4587-b154-eb9cc8acef90">

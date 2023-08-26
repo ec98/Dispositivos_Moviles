@@ -106,20 +106,10 @@ class PrincipalActivity : AppCompatActivity() {
                 }
 
                 R.id.favoritos -> {
-//                    var suma = 0
-//                    for (i in listOf(6, 9, 1)) {
-//                        suma += i
-//                    }
-//                    Snackbar.make(
-//                        binding.textView,
-//                        "listaOf(6,9,1) = ${suma}",
-//                        Snackbar.LENGTH_SHORT
-//                    ).show()
-                    // Respond to navigation item 2 click
 
                     FragmentManager().replaceFragment(
                         supportFragmentManager,
-                        binding.framContainer.id,
+                        binding.frContainer2.id,
                         SecondFragment()
                     )
                     true

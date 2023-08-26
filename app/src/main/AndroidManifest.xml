@@ -34,10 +34,6 @@
         <receiver
             android:name=".ui.ui.utilities.BroadcasterNotifications"
             android:enabled="true" />
-
-        <activity
-            android:name=".ui.ui.activities.NotificacionDetalles"
-            android:exported="false" />
         <activity
             android:name=".ui.ui.activities.CameraActivity"
             android:exported="false" />

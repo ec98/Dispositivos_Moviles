@@ -25,24 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
-        android:layout_width="275dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
-
-        android:backgroundTint="@color/low_gray"
-        android:hint="@string/sda_act_buscarArticulo"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-    -->
-
     <FrameLayout
         android:id="@+id/framContainer"
         android:layout_width="match_parent"
@@ -82,6 +64,16 @@
             android:textColor="@color/azul_marino"
             android:textSize="20sp" />
     </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fr_container2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

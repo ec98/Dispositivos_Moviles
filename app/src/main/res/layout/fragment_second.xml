@@ -7,42 +7,65 @@
     android:background="@color/black"
     tools:context=".ui.ui.fragment.SecondFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/marvel_blue" />
-
-    <EditText
-        android:id="@+id/editTextF2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="23dp"
-        android:drawableLeft="@drawable/baseline_search_24"
-        android:textColor="@color/black"
-        android:hint="Busca tu personaje favorito"
-        android:textSize="25sp"
-        android:background="@drawable/border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:drawableLeft="@drawable/baseline_search_24"
-        tools:textStyle="italic" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerF2"
-        android:layout_width="411dp"
-        android:layout_height="486dp"
-        android:layout_marginTop="72dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextF2"
-        app:layout_constraintVertical_bias="0.965" />
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/marvel_blue" />
+
+        <EditText
+            android:id="@+id/editTextF2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="23dp"
+            android:background="@drawable/border"
+            android:drawableLeft="@drawable/baseline_search_24"
+            android:hint="Busca tu personaje favorito"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:drawableLeft="@drawable/baseline_search_24"
+            tools:textStyle="italic" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rvSwipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerF2"
+                android:layout_width="411dp"
+                android:layout_height="486dp"
+                android:layout_marginTop="72dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextF2"
+                app:layout_constraintVertical_bias="0.965" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:text="¿Olvido su Password?"
         android:background="@color/transparenteRecuperar"
+        android:text="¿Olvido su Password?"
         android:textColor="@color/white"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,8 +83,8 @@
         android:layout_height="37dp"
 
         android:layout_marginTop="8dp"
-        android:hint="example@email.com"
         android:background="@drawable/border"
+        android:hint="example@email.com"
 
         android:padding="8dp"
         android:textColor="@color/white"
@@ -136,21 +136,21 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:drawableRight="@drawable/icons8_visible_16"
         android:id="@+id/txt_password"
         style="@style/ButtonsGeneral"
         android:layout_width="286dp"
         android:layout_height="37dp"
-
         android:layout_marginTop="8dp"
+
         android:background="@drawable/border"
+        android:drawableRight="@drawable/icons8_visible_16"
 
         android:hint="***********"
+        android:inputType="textPassword"
         android:padding="8dp"
         android:textColor="@color/white"
         android:textColorHint="@color/low_gray"
         android:textSize="16sp"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -193,13 +193,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:drawableLeft="@drawable/baseline_location_on_24"
         android:id="@+id/btnSearch"
         style="@style/ButtonsGeneral"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/verde_marino"
+        android:drawableLeft="@drawable/baseline_location_on_24"
         android:gravity="center"
 
         android:text="Ubication"
@@ -208,5 +208,21 @@
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/btnphone"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bordes_redondos"
+        android:drawableLeft="@drawable/baseline_phone_24"
+        android:paddingLeft="10dip"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

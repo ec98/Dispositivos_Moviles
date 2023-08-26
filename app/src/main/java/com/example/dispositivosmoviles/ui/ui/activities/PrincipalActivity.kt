@@ -4,7 +4,6 @@ import android.animation.ValueAnimator
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -119,7 +118,7 @@ class PrincipalActivity : AppCompatActivity() {
 
                     FragmentManager().replaceFragment(
                         supportFragmentManager,
-                        binding.framContainer.id,
+                        binding.frContainer2.id,
                         SecondFragment()
                     )
                     true
@@ -131,7 +130,7 @@ class PrincipalActivity : AppCompatActivity() {
                     // Respond to navigation item 3 click
                     var frag = ThirtyFragment();
                     val trans = supportFragmentManager.beginTransaction()
-                    trans.replace(binding.framContainer.id, frag)
+                    trans.replace(binding.frContainer3.id, frag)
                     trans.addToBackStack(null)
                     trans.commit()
                     true
